@@ -1,29 +1,41 @@
-### How to run 
-docker run --rm -v $(pwd):/app -w /app golang:1.22-alpine sh -c "go mod init example.com/monorepo && go mod tidy"
+# Go Monorepo Example
 
-or
+## Introduction
 
-make init (not needed)
+This repository demonstrates a simple Go monorepo using Go modules. It contains
+two services: `users` and `files`. Each service has its own `main.go` entry
+point, business logic, and embedded data.
 
-### How to build
+## Folder Structure
 
-make build-users
-make build-files
+The folder structure is as follows:
 
-### How to run
+* `cmd/`: Entry points for each service
+	+ `users/`: `main.go` for the Users service
+	+ `files/`: `main.go` for the Files service
+* `internal/`: Business logic and utilities
+	+ `users/`: Logic and embedded data for Users
+		- `service.go`
+		- `users_mock.go`
+		- `mocks/`
+			- `users.json`
+	+ `files/`: Logic and embedded data for Files
+		- `service.go`
+		- `files_mock.go`
+		- `mocks/`
+			- `files.json`
+	+ `shares/`: Shared code between services
+		- `logger.go`: Common logging utilities
+		- `reader.go`: Common JSON reading helpers
+* `bin/`: (Generated) Compiled binaries
+	+ `users`
+	+ `files`
+* `Dockerfile`: Multi-stage build for Docker
+* `Makefile`: Shortcuts for building, running, validating
+* `README.md`: This file
 
-make run-users
-make run-files
+## How to Run
 
+### Initialize
 
-## Validations
-
-make validate-size-users # should be around 4.3MB
-make validate-size-files # should be around 2.4MB
-
-
-## Enter
-
-make enter-users
-make enter-files
-# test-go-mods
+To initialize the Go module, run:
