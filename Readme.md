@@ -39,3 +39,43 @@ The folder structure is as follows:
 ### Initialize
 
 To initialize the Go module, run:
+
+```bash
+make init
+```
+
+### Build
+
+To build the services, run:
+
+```bash
+make build-users
+make build-files
+```
+
+### Run
+
+To run the services, run:
+
+```bash
+make run-users
+make run-files
+``` 
+
+### Validate
+
+To validate the services, run:
+
+```bash
+make validate-size-users # should be around 4.3MB
+make validate-size-files # should be around 2.4MB
+```
+
+### Enter
+
+To enter the services, run:
+
+```bash
+make enter-users
+make enter-files
+```
